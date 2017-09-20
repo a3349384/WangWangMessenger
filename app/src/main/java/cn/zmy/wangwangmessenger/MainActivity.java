@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity
     protected void onDestroy()
     {
         super.onDestroy();
-        //移除所有Cookie
-        CookieManager.getInstance().removeAllCookie();
         mWebView.clearCache(true);
         mWebView.clearHistory();
         mWebView.destroy();

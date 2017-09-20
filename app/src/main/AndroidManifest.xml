@@ -22,5 +22,6 @@
         </activity>
         <activity android:name=".MessageActivity"
                   android:screenOrientation="portrait"/>
+        <service android:name=".MessageService"/>
     </application>
 </manifest>
