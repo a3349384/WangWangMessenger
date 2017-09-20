@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="cn.zmy.wangwangmessenger.model.User"/>
+        <variable name="model"
+                  type="User"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:padding="5dp">
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:ellipsize="end"
+                  android:maxLines="1"
+                  android:text="@{model.name}"
+                  android:textColor="@android:color/black"
+                  android:textSize="20dp"/>
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="10dp"
+                  android:ellipsize="end"
+                  android:maxLines="1"
+                  android:text="@{model.desc}"
+                  android:textColor="@android:color/darker_gray"
+                  android:textSize="14dp"/>
+    </LinearLayout>
+</layout>
