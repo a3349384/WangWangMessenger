@@ -1,15 +1,18 @@
 package cn.zmy.wangwangmessenger.service;
 
+import java.net.HttpCookie;
+import java.util.List;
+
 import cn.zmy.common.json.JsonUtil;
-import cn.zmy.wangwangmessenger.helper.CookieHelper;
+import cn.zmy.common.utils.CollectionUtil;
+import cn.zmy.common.utils.Util;
 import cn.zmy.wangwangmessenger.helper.TaobaoHelper;
+import cn.zmy.wangwangmessenger.manager.CookieManager;
 import cn.zmy.wangwangmessenger.manager.HttpManager;
-import cn.zmy.wangwangmessenger.manager.TaobaoManager;
 import cn.zmy.wangwangmessenger.model.MessageData;
 import cn.zmy.wangwangmessenger.model.MessageSendResponse;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.internal.ws.RealWebSocket;
 
 /**
  * Created by zmy on 2017/9/20.
@@ -26,7 +29,7 @@ public class MessageHttpService
         {
             String data = JsonUtil.toString(MessageData.of(userName, message));
             long time = System.currentTimeMillis();
-            String sign = TaobaoHelper.sign(TaobaoManager.getInstance().getH5tk(), APPKEY, data, time);
+            String sign = TaobaoHelper.sign(CookieManager.getInstance().getH5tk(), APPKEY, data, time);
             String url = URL_SEND_MESSAGE_BASE + String.format("data=%s&appKey=12574478&sign=%s&t=%d", data, sign, time);
 
             Request request = new Request.Builder()
@@ -36,12 +39,27 @@ public class MessageHttpService
                                       .header("Referer", "https://h5.m.taobao.com/ww/index.htm")
                                       .header("Accept-Encoding", "gzip, deflate")
                                       .header("Accept-Language", "zh-CN,en-US;q=0.8")
-                                      .header("Cookie", CookieHelper.getCookiesString())
+                                      .header("Cookie", CookieManager.getInstance().generateCookieString())
                                       .build();
             Response response = HttpManager.getInstance().getHttpClient().newCall(request).execute();
             if (response.code() != 200)
             {
                 return null;
+            }
+            List<String> cookies = response.headers("Set-Cookie");
+            if (cookies != null && cookies.size() > 0)
+            {
+                for (String cookie : cookies)
+                {
+                    List<HttpCookie> httpCookies = HttpCookie.parse(cookie);
+                    if (httpCookies != null)
+                    {
+                        for (HttpCookie httpCookie : httpCookies)
+                        {
+                            CookieManager.getInstance().changeCookie(httpCookie);
+                        }
+                    }
+                }
             }
             String responseString = response.body().string();
             int first = responseString.indexOf('{');

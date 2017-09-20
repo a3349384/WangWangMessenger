@@ -30,10 +30,10 @@ public class CookieHelper
         String[] cookiesStringArr = cookiesString.split(";");
         for (String cookieString : cookiesStringArr)
         {
-            cookiesString = cookiesString.trim();
-            String[] tmp = cookieString.split("=");
-            String name = tmp[0];
-            String value = tmp[1].substring(0, tmp[1].length() -1 );
+            cookieString = cookieString.trim();
+            int first = cookieString.indexOf('=');
+            String name = cookieString.substring(0, first);
+            String value = cookieString.substring(first + 1);
             HttpCookie httpCookie = new HttpCookie(name, value);
             httpCookies.add(httpCookie);
         }

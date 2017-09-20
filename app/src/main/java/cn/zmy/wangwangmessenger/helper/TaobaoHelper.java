@@ -1,7 +1,5 @@
 package cn.zmy.wangwangmessenger.helper;
 
-import android.webkit.CookieManager;
-
 import java.net.HttpCookie;
 import java.util.List;
 

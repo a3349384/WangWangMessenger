@@ -12,8 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import cn.zmy.wangwangmessenger.adapter.UserListAdapter;
+import cn.zmy.wangwangmessenger.helper.CookieHelper;
 import cn.zmy.wangwangmessenger.helper.TaobaoHelper;
-import cn.zmy.wangwangmessenger.manager.TaobaoManager;
+import cn.zmy.wangwangmessenger.manager.CookieManager;
 import cn.zmy.wangwangmessenger.model.User;
 
 /**
@@ -37,7 +38,8 @@ public class MessageActivity extends AppCompatActivity
             finish();
             return;
         }
-        TaobaoManager.getInstance().setH5tk(h5tk);
+        CookieManager.getInstance().setH5tk(h5tk);
+        CookieManager.getInstance().setHttpCookies(CookieHelper.parseCookieString());
 
         setContentView(R.layout.activity_meaasge);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
