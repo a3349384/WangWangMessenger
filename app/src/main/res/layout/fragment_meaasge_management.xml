@@ -25,5 +25,10 @@
                 android:layout_height="wrap_content"
                 android:onClick="@{() -> vm.stop()}"
                 android:text="停止发送"/>
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@{vm.model.progressLog}"
+                  android:textColor="@color/colorPrimary"
+                  android:textSize="14dp"/>
     </LinearLayout>
 </layout>

@@ -33,11 +33,13 @@ public class MessageManageViewModel
 
     public void start()
     {
+        mModel.setProgressLog("");
         MessageService.start(mActivityContext, mModel.getMessage());
     }
 
     public void stop()
     {
+        mModel.setProgressLog("");
         MessageService.stop(mActivityContext);
     }
 }

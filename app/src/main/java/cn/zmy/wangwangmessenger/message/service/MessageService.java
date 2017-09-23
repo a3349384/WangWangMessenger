@@ -8,11 +8,14 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 import java.util.Random;
 
 import cn.zmy.common.utils.Util;
 import cn.zmy.wangwangmessenger.base.constant.IntentConstant;
+import cn.zmy.wangwangmessenger.message.model.MessageProgress;
 import cn.zmy.wangwangmessenger.taobao.model.MessageSendResponse;
 import cn.zmy.wangwangmessenger.user.daoservice.UserDaoService;
 import cn.zmy.wangwangmessenger.user.model.User;
@@ -92,29 +95,31 @@ public class MessageService extends Service
             List<User> users = mUserDaoService.list(User.STATUS_NONE);
             if (Util.getCollectSize(users) == 0)
             {
+                sendProgressLog("找不到需要发送消息的用户");
                 return;
             }
             if (isInterrupted())
             {
+                sendProgressLog("停止发送");
                 return;
             }
             for (User user : users)
             {
                 if (isInterrupted())
                 {
-                    Log.d("MessageThread", "消息线程中断");
+                    sendProgressLog("停止发送");
                     break;
                 }
-                Log.d("MessageThread", "准备发送消息给：" + user.getName());
+                sendProgressLog("准备发送消息给：" + user.getName());
                 MessageSendResponse response = MessageHttpService.sendMessage(user.getName(), mMessage);
                 if (response != null && response.isSuccess())
                 {
-                    Log.d("MessageThread", "发送消息成功");
+                    sendProgressLog("成功发送消息给：" + user.getName());
                     user.setStatus(User.STATUS_SUCCESS);
                 }
                 else
                 {
-                    Log.d("MessageThread", "发送消息失败");
+                    sendProgressLog("发送消息失败：" + user.getName());
                     user.setStatus(User.STATUS_FAILED);
                 }
                 mUserDaoService.update(user);
@@ -130,6 +135,18 @@ public class MessageService extends Service
                     break;
                 }
             }
+            sendProgressLog("发送完毕");
+        }
+
+        private void sendProgressLog(String log)
+        {
+            if (TextUtils.isEmpty(log))
+            {
+                return;
+            }
+            MessageProgress progress = new MessageProgress();
+            progress.setProgressLog(log);
+            EventBus.getDefault().post(progress);
         }
     }
 }
