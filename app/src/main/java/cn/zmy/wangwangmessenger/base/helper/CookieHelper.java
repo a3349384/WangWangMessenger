@@ -13,16 +13,19 @@ import java.util.List;
 
 public class CookieHelper
 {
-    public static String getCookiesString()
+    public static String getTaobaoWebCookiesString()
     {
         String cookiesString = CookieManager.getInstance().getCookie("api.m.taobao.com");
         return cookiesString;
     }
 
-    public static List<HttpCookie> parseCookieString()
+    public static List<HttpCookie> stringToHttpCookies(String cookiesString)
     {
+        if (TextUtils.isEmpty(cookiesString))
+        {
+            return null;
+        }
         List<HttpCookie> httpCookies = new ArrayList<>();
-        String cookiesString = getCookiesString();
         if (TextUtils.isEmpty(cookiesString))
         {
             return httpCookies;
@@ -39,4 +42,26 @@ public class CookieHelper
         }
         return httpCookies;
     }
+
+    public static String httpCookiesToString(List<HttpCookie> httpCookies)
+    {
+        if (httpCookies == null)
+        {
+            return null;
+        }
+
+        StringBuilder cookieStringBuilder = new StringBuilder();
+        for (HttpCookie httpCookie : httpCookies)
+        {
+            if (cookieStringBuilder.length() > 0)
+            {
+                cookieStringBuilder.append("; ");
+            }
+            cookieStringBuilder.append(httpCookie.getName());
+            cookieStringBuilder.append("=");
+            cookieStringBuilder.append(httpCookie.getValue());
+        }
+        return cookieStringBuilder.toString();
+    }
 }
+

@@ -37,7 +37,14 @@ public class MessageManagementFragment extends BaseBindingFragment implements IT
     @Override
     protected void onBindingCreated(ViewDataBinding viewDataBinding)
     {
-        mVM = new MessageManageViewModel();
+        mVM = new MessageManageViewModel(getActivity());
         viewDataBinding.setVariable(BR.vm, mVM);
+    }
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        mVM.stop();
     }
 }

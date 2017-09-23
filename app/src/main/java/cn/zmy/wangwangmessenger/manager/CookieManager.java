@@ -59,20 +59,4 @@ public class CookieManager
             hc.setValue(httpCookie.getValue());
         }
     }
-
-    public String generateCookieString()
-    {
-        StringBuilder cookieStringBuilder = new StringBuilder();
-        for (HttpCookie httpCookie : httpCookies)
-        {
-            if (cookieStringBuilder.length() > 0)
-            {
-                cookieStringBuilder.append("; ");
-            }
-            cookieStringBuilder.append(httpCookie.getName());
-            cookieStringBuilder.append("=");
-            cookieStringBuilder.append(httpCookie.getValue());
-        }
-        return cookieStringBuilder.toString();
-    }
 }

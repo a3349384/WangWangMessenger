@@ -11,6 +11,7 @@ import android.webkit.WebViewClient;
 
 import cn.zmy.wangwangmessenger.base.Launcher;
 import cn.zmy.wangwangmessenger.R;
+import cn.zmy.wangwangmessenger.base.helper.CookieHelper;
 
 public class LoginActivity extends AppCompatActivity
 {
@@ -72,8 +73,7 @@ public class LoginActivity extends AppCompatActivity
         public void dispatchMessage(Message msg)
         {
             super.dispatchMessage(msg);
-            CookieManager cookieManager = CookieManager.getInstance();
-            String cookieString = cookieManager.getCookie("api.m.taobao.com");
+            String cookieString = CookieHelper.getTaobaoWebCookiesString();
             if (cookieString != null && cookieString.contains("_m_h5_tk"))
             {
                 //登录已成功

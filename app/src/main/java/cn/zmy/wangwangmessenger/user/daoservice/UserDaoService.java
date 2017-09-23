@@ -34,14 +34,32 @@ public class UserDaoService
             return;
         }
 
-
         UserDao userDao = DaoManager.getInstance().getWritableDaoSession().getUserDao();
         userDao.insertInTx(users);
     }
 
+    public void update(User user)
+    {
+        if (user == null || user.getId() == null)
+        {
+            return;
+        }
+        UserDao userDao = DaoManager.getInstance().getWritableDaoSession().getUserDao();
+        userDao.updateInTx(user);
+    }
+
     public List<User> list()
     {
-        UserDao userDao = DaoManager.getInstance().getWritableDaoSession().getUserDao();
+        UserDao userDao = DaoManager.getInstance().getReadableDaoSession().getUserDao();
         return userDao.queryBuilder().list();
+    }
+
+    /**
+     * 获取状态为指定status的用户
+     * */
+    public List<User> list(int status)
+    {
+        UserDao userDao = DaoManager.getInstance().getReadableDaoSession().getUserDao();
+        return userDao.queryBuilder().where(UserDao.Properties.Status.eq(status)).list();
     }
 }

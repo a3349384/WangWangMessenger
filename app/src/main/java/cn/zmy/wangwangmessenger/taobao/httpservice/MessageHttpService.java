@@ -4,6 +4,7 @@ import java.net.HttpCookie;
 import java.util.List;
 
 import cn.zmy.common.json.JsonUtil;
+import cn.zmy.wangwangmessenger.base.helper.CookieHelper;
 import cn.zmy.wangwangmessenger.taobao.helper.TaobaoHelper;
 import cn.zmy.wangwangmessenger.manager.CookieManager;
 import cn.zmy.wangwangmessenger.manager.HttpManager;
@@ -37,7 +38,7 @@ public class MessageHttpService
                                       .header("Referer", "https://h5.m.taobao.com/ww/index.htm")
                                       .header("Accept-Encoding", "gzip, deflate")
                                       .header("Accept-Language", "zh-CN,en-US;q=0.8")
-                                      .header("Cookie", CookieManager.getInstance().generateCookieString())
+                                      .header("Cookie", CookieHelper.httpCookiesToString(CookieManager.getInstance().getHttpCookies()))
                                       .build();
             Response response = HttpManager.getInstance().getHttpClient().newCall(request).execute();
             if (response.code() != 200)
