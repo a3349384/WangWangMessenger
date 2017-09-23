@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="cn.zmy.wangwangmessenger.management.viewmodel.ManagementViewModel"/>
+        <variable name="vm"
+                  type="ManagementViewModel"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+        <Button android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@android:color/holo_blue_dark"
+                android:onClick="@{()-> vm.onUserManagementClick()}"
+                android:text="用户管理"
+                android:textColor="@android:color/white"
+                android:textSize="30dp"/>
+        <Button android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/holo_blue_dark"
+                android:onClick="@{()-> vm.onMessageManagementClick()}"
+                android:text="消息管理"
+                android:textColor="@android:color/white"
+                android:textSize="30dp"/>
+    </LinearLayout>
+</layout>

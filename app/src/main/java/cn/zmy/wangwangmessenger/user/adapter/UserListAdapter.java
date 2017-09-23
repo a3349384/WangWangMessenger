@@ -1,4 +1,4 @@
-package cn.zmy.wangwangmessenger.adapter;
+package cn.zmy.wangwangmessenger.user.adapter;
 
 import cn.zmy.common.binding.adapter.SingleTypeBindingAdapter;
 import cn.zmy.wangwangmessenger.BR;
@@ -6,7 +6,7 @@ import cn.zmy.wangwangmessenger.R;
 import cn.zmy.wangwangmessenger.user.model.User;
 
 /**
- * Created by zmy on 2017/9/20.
+ * Created by zmy on 2017/9/21.
  */
 
 public class UserListAdapter extends SingleTypeBindingAdapter<User>

@@ -3,10 +3,10 @@ package cn.zmy.wangwangmessenger;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 
-import cn.zmy.wangwangmessenger.model.MessageData;
+import cn.zmy.wangwangmessenger.manager.UserManager;
+import cn.zmy.wangwangmessenger.user.model.User;
 import cn.zmy.wangwangmessenger.service.MessageHttpService;
 
 /**
@@ -44,7 +44,18 @@ public class MessageService extends Service
         @Override
         public void run()
         {
-            MessageHttpService.sendMessage("黑屋炫酷无痕", "在不在");
+            for (User user : UserManager.getInstance().getUsers())
+            {
+                MessageHttpService.sendMessage(user.getName(), "在不在");
+                try
+                {
+                    Thread.sleep(5000);
+                }
+                catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

@@ -1,17 +1,18 @@
-package cn.zmy.wangwangmessenger;
+package cn.zmy.wangwangmessenger.login;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.CookieManager;
-import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class MainActivity extends AppCompatActivity
+import cn.zmy.wangwangmessenger.Launcher;
+import cn.zmy.wangwangmessenger.R;
+
+public class LoginActivity extends AppCompatActivity
 {
     private WebView mWebView;
     private ScanCookieHandler mScanCookieHandler;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity
 
     private void onLoginSuccess()
     {
-        startActivity(new Intent(this, MessageActivity.class));
+        Launcher.launchToManagementActivity(this);
         finish();
     }
 
