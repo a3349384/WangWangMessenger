@@ -4,11 +4,9 @@ apply plugin: 'org.greenrobot.greendao'
 
 android {
     signingConfigs {
-        config {
+        release {
             keyAlias 'zmy'
-            keyPassword 'as20102010'
-            storeFile file('E:/AndroidCode/WangWangMessenger/app/zmy.jks')
-            storePassword 'as20102010'
+            storeFile file('E:/keystore/zmy.jks')
         }
     }
     compileSdkVersion 25
@@ -24,7 +22,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -34,6 +32,17 @@ android {
     dataBinding {
         enabled true
     }
+}
+
+def propFile = project.file('sign.properties')
+if (propFile.exists()) {
+    def Properties props = new Properties()
+    props.load(new FileInputStream(propFile))
+    if (props.containsKey('password')) {
+        android.signingConfigs.release.keyPassword = props['password']
+        android.signingConfigs.release.storePassword = props['password']
+    }
+    props.clear()
 }
 
 dependencies {
