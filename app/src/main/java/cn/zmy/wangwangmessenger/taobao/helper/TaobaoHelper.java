@@ -1,11 +1,10 @@
-package cn.zmy.wangwangmessenger.helper;
+package cn.zmy.wangwangmessenger.taobao.helper;
 
 import java.net.HttpCookie;
 import java.util.List;
 
 import cn.zmy.common.utils.CollectionUtil;
 import cn.zmy.common.utils.EncryptUtil;
-
 /**
  * Created by zmy on 2017/9/20.
  */
@@ -15,7 +14,7 @@ public class TaobaoHelper
     public static String getH5tk()
     {
 
-        List<HttpCookie> httpCookies = CookieHelper.parseCookieString();
+        List<HttpCookie> httpCookies = cn.zmy.wangwangmessenger.base.helper.CookieHelper.parseCookieString();
         HttpCookie httpCookie = CollectionUtil.firstOrDefault(httpCookies, HttpCookie -> HttpCookie.getName().contentEquals("_m_h5_tk"));
         if (httpCookie == null)
         {

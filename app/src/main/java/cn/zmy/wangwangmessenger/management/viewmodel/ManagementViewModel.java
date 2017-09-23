@@ -2,7 +2,7 @@ package cn.zmy.wangwangmessenger.management.viewmodel;
 
 import android.content.Context;
 
-import cn.zmy.wangwangmessenger.Launcher;
+import cn.zmy.wangwangmessenger.base.Launcher;
 
 /**
  * Created by zmy on 2017/9/21.
@@ -24,6 +24,6 @@ public class ManagementViewModel
 
     public void onMessageManagementClick()
     {
-
+        Launcher.launchToMessageManagementActivity(mContext);
     }
 }

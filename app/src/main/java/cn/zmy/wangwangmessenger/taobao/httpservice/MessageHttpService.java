@@ -1,16 +1,14 @@
-package cn.zmy.wangwangmessenger.service;
+package cn.zmy.wangwangmessenger.taobao.httpservice;
 
 import java.net.HttpCookie;
 import java.util.List;
 
 import cn.zmy.common.json.JsonUtil;
-import cn.zmy.common.utils.CollectionUtil;
-import cn.zmy.common.utils.Util;
-import cn.zmy.wangwangmessenger.helper.TaobaoHelper;
+import cn.zmy.wangwangmessenger.taobao.helper.TaobaoHelper;
 import cn.zmy.wangwangmessenger.manager.CookieManager;
 import cn.zmy.wangwangmessenger.manager.HttpManager;
-import cn.zmy.wangwangmessenger.model.MessageData;
-import cn.zmy.wangwangmessenger.model.MessageSendResponse;
+import cn.zmy.wangwangmessenger.taobao.model.MessageData;
+import cn.zmy.wangwangmessenger.taobao.model.MessageSendResponse;
 import okhttp3.Request;
 import okhttp3.Response;
 

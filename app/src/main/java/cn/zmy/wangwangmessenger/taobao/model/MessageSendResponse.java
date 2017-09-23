@@ -1,4 +1,4 @@
-package cn.zmy.wangwangmessenger.model;
+package cn.zmy.wangwangmessenger.taobao.model;
 
 import java.util.List;
 

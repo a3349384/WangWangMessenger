@@ -1,4 +1,4 @@
-package cn.zmy.wangwangmessenger.helper;
+package cn.zmy.wangwangmessenger.base.helper;
 
 import android.text.TextUtils;
 import android.webkit.CookieManager;

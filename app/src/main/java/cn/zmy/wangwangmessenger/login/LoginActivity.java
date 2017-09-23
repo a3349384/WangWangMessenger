@@ -9,7 +9,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import cn.zmy.wangwangmessenger.Launcher;
+import cn.zmy.wangwangmessenger.base.Launcher;
 import cn.zmy.wangwangmessenger.R;
 
 public class LoginActivity extends AppCompatActivity

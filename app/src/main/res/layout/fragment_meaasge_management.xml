@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="cn.zmy.wangwangmessenger.message.viewmodel.MessageManageViewModel"/>
+        <variable name="vm"
+                  type="MessageManageViewModel"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+        <Button android:id="@+id/buttonStart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.start()}"
+                android:text="开始发送"/>
+        <Button android:id="@+id/buttonStop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> vm.stop()}"
+                android:text="停止发送"/>
+    </LinearLayout>
+</layout>

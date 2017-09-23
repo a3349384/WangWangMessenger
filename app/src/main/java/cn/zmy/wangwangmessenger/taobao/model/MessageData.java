@@ -1,4 +1,4 @@
-package cn.zmy.wangwangmessenger.model;
+package cn.zmy.wangwangmessenger.taobao.model;
 
 /**
  * Created by zmy on 2017/9/20.

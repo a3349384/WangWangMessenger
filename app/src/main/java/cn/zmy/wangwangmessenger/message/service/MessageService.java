@@ -1,4 +1,4 @@
-package cn.zmy.wangwangmessenger;
+package cn.zmy.wangwangmessenger.message.service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 
 import cn.zmy.wangwangmessenger.manager.UserManager;
 import cn.zmy.wangwangmessenger.user.model.User;
-import cn.zmy.wangwangmessenger.service.MessageHttpService;
+import cn.zmy.wangwangmessenger.taobao.httpservice.MessageHttpService;
 
 /**
  * Created by zmy on 2017/9/20.
